@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keseruan MPK — SMK SMTI Padang</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.content-section { padding: 64px 1.5rem; }
+.content-section.alt { background: var(--putih); }
+
+/* GALLERY */
+.kegiatan-block { margin-bottom: 3.5rem; }
+.kegiatan-header {
+  background: linear-gradient(135deg, var(--hijau-terang), #27a560);
+  border-radius: 10px; padding: 14px 22px; margin-bottom: 1.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.kegiatan-header h3 { color: white; font-size: 1rem; font-weight: 700; }
+.kegiatan-header span { color: rgba(255,255,255,0.7); font-size: 13px; }
+
+.foto-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); gap: 1rem; }
+.foto-card {
+  border-radius: 12px; overflow: hidden;
+  background: linear-gradient(135deg, var(--hijau-gelap), var(--hijau-terang));
+  aspect-ratio: 4/3; position: relative; transition: all 0.25s; cursor: pointer;
+}
+.foto-card:hover { transform: scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+.foto-card::before {
+  content: attr(data-num);
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700;
+  color: rgba(255,255,255,0.2);
+}
+.foto-card::after {
+  content: attr(data-label);
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.6));
+  color: white; font-size: 12px; font-weight: 600; padding: 24px 12px 10px;
+}
+.foto-card.v1 { background: linear-gradient(135deg, #0f3d25, #2fa86a); }
+.foto-card.v2 { background: linear-gradient(135deg, #3d0f0f, #a82f2f); }
+.foto-card.v3 { background: linear-gradient(135deg, #1a2a3d, #2f5ea8); }
+.foto-card.v4 { background: linear-gradient(135deg, #2d2d0f, #a8902f); }
+
+/* HIGHLIGHT STATS */
+.highlight-row {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 3rem;
+}
+.hl-stat {
+  background: var(--putih); border-radius: 10px; border: 1px solid var(--border);
+  padding: 1.25rem; text-align: center;
+}
+.hl-stat .num { font-family: 'Playfair Display', serif; font-size: 1.75rem; font-weight: 700; color: var(--hijau); }
+.hl-stat .label { font-size: 12px; color: var(--teks-abu); margin-top: 4px; }
+
+@media(max-width:768px){
+  .highlight-row { grid-template-columns: 1fr 1fr; }
+  .foto-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">M</div>
+    <div class="nav-title">MPK SMK SMTI<span>Padang</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Beranda</a>
+    <a href="tentang.html">Tentang</a>
+    <a href="struktur.html">Struktur</a>
+    <a href="pemiltos.html">Pemiltos</a>
+    <a href="profil.html">Profil</a>
+    <a href="keseruan.html">Keseruan</a>
+    <a href="form-osis.html">Form OSIS</a>
+  </div>
+  <div class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+</nav>
+<div class="nav-overlay" onclick="toggleNav()"></div>
+<div class="nav-drawer">
+  <a href="index.html">🏠 Beranda</a>
+  <a href="tentang.html">📋 Tentang MPK</a>
+  <a href="struktur.html">🏛️ Struktur Organisasi</a>
+  <div class="drawer-section">Pemilihan</div>
+  <a href="pemiltos.html">🗳️ Pemiltos 2026/2027</a>
+  <div class="drawer-section">Profil</div>
+  <a href="profil.html?bp=bp20">BP 20</a>
+  <a href="profil.html?bp=bp21">BP 21</a>
+  <a href="profil.html?bp=bp22">BP 22</a>
+  <a href="profil.html?bp=bp23">BP 23</a>
+  <div class="drawer-section">Lainnya</div>
+  <a href="keseruan.html">🎉 Keseruan MPK</a>
+  <a href="form-osis.html">📝 Form OSIS</a>
+</div>
+
+<div class="page-wrap">
+  <div class="page-hero" data-title="KESERUAN">
+    <div class="container">
+      <span class="section-tag">Dokumentasi Kegiatan</span>
+      <h1><em>Keseruan</em> MPK<br>SMTI Padang</h1>
+      <p>Momen-momen berkesan dan kegiatan seru bersama anggota MPK SMK SMTI Padang.</p>
+    </div>
+  </div>
+
+  <section class="content-section alt">
+    <div class="container">
+      <div class="highlight-row">
+        <div class="hl-stat"><div class="num">4+</div><div class="label">Kegiatan Utama</div></div>
+        <div class="hl-stat"><div class="num">4</div><div class="label">Angkatan</div></div>
+        <div class="hl-stat"><div class="num">1</div><div class="label">Periode Aktif</div></div>
+        <div class="hl-stat"><div class="num">2025</div><div class="label">Tahun</div></div>
+      </div>
+
+      <!-- SELEKSI -->
+      <div class="kegiatan-block">
+        <div class="kegiatan-header">
+          <h3>Seleksi Calon Ketua dan Wakil Ketua OSIS</h3>
+          <span>2024/2025</span>
+        </div>
+        <div class="foto-grid">
+          <div class="foto-card v1" data-num="📸" data-label="Rapat Seleksi"></div>
+          <div class="foto-card v1" data-num="📸" data-label="Wawancara Calon"></div>
+          <div class="foto-card v1" data-num="📸" data-label="Pengumuman Lolos"></div>
+          <div class="foto-card v1" data-num="📸" data-label="Dokumentasi Seleksi"></div>
+        </div>
+      </div>
+
+      <!-- PKO PKM -->
+      <div class="kegiatan-block">
+        <div class="kegiatan-header">
+          <h3>Pelatihan Kepemimpinan (PKO-PKM)</h3>
+          <span>2024/2025</span>
+        </div>
+        <div class="foto-grid">
+          <div class="foto-card v2" data-num="📸" data-label="Pembukaan PKO"></div>
+          <div class="foto-card v2" data-num="📸" data-label="Materi Kepemimpinan"></div>
+          <div class="foto-card v2" data-num="📸" data-label="Games & Ice Breaking"></div>
+          <div class="foto-card v2" data-num="📸" data-label="Penutupan PKM"></div>
+        </div>
+      </div>
+
+      <!-- RAPAT PLENO -->
+      <div class="kegiatan-block">
+        <div class="kegiatan-header">
+          <h3>Rapat Pleno MPK</h3>
+          <span>2024/2025</span>
+        </div>
+        <div class="foto-grid">
+          <div class="foto-card v3" data-num="📸" data-label="Rapat Pleno I"></div>
+          <div class="foto-card v3" data-num="📸" data-label="Evaluasi OSIS"></div>
+          <div class="foto-card v3" data-num="📸" data-label="Laporan Tengah Jabatan"></div>
+          <div class="foto-card v3" data-num="📸" data-label="Dokumentasi Rapat"></div>
+        </div>
+      </div>
+
+      <!-- FOTO BERSAMA -->
+      <div class="kegiatan-block">
+        <div class="kegiatan-header">
+          <h3>Momen Kebersamaan</h3>
+          <span>Semua Angkatan</span>
+        </div>
+        <div class="foto-grid">
+          <div class="foto-card v4" data-num="📸" data-label="Foto Bersama BP 23"></div>
+          <div class="foto-card v4" data-num="📸" data-label="Foto Bersama BP 22"></div>
+          <div class="foto-card v4" data-num="📸" data-label="Foto Bersama BP 21"></div>
+          <div class="foto-card v4" data-num="📸" data-label="Foto Bersama BP 20"></div>
+          <div class="foto-card v4" data-num="📸" data-label="Kegiatan Bersama"></div>
+          <div class="foto-card v4" data-num="📸" data-label="Dokumentasi MPK"></div>
+        </div>
+      </div>
+
+      <div style="text-align:center;padding-top:1rem;">
+        <p style="color:var(--teks-abu);font-size:0.9rem;">Tambahkan foto-foto kegiatan Anda di sini untuk melengkapi galeri.</p>
+        <a href="form-osis.html" class="btn-hijau" style="margin-top:1rem;display:inline-block;">Laporkan ke MPK</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3>MPK SMK SMTI Padang</h3>
+      <p>Majelis Permusyawaratan Kelas<br>SMK SMTI Padang<br>Jl. Ir. H. Juanda No.2, Padang<br>Telp. (0751) 705322 · Fax. 075141924</p>
+    </div>
+    <div class="footer-col">
+      <h4>Halaman</h4>
+      <a href="tentang.html">Tentang MPK</a>
+      <a href="struktur.html">Struktur</a>
+      <a href="pemiltos.html">Pemiltos</a>
+      <a href="profil.html">Profil Anggota</a>
+    </div>
+    <div class="footer-col">
+      <h4>Lainnya</h4>
+      <a href="keseruan.html">Keseruan MPK</a>
+      <a href="form-osis.html">Form OSIS</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 MPK SMK SMTI Padang. Seluruh hak dilindungi.</span>
+    <span>Periode 2024/2025</span>
+  </div>
+</footer>
+<script src="nav.js"></script>
+</body>
+</html>

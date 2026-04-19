@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profil Anggota MPK — SMK SMTI Padang</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.content-section { padding: 64px 1.5rem; }
+.content-section.alt { background: var(--putih); }
+
+/* BP TABS */
+.bp-nav { background: var(--putih); border-bottom: 1px solid var(--border); padding: 0 1.5rem; position: sticky; top: 64px; z-index: 100; }
+.bp-nav-inner { max-width: 900px; margin: 0 auto; display: flex; gap: 0; }
+.bp-tab {
+  padding: 14px 24px; font-size: 14px; font-weight: 600; color: var(--teks-abu);
+  border-bottom: 2px solid transparent; cursor: pointer; text-decoration: none;
+  transition: all 0.2s; white-space: nowrap;
+}
+.bp-tab:hover { color: var(--hijau); }
+.bp-tab.aktif { color: var(--hijau); border-bottom-color: var(--hijau-terang); }
+
+/* ANGGOTA PANEL */
+.bp-panel { display: none; }
+.bp-panel.aktif { display: block; }
+
+/* GROUP PHOTO BANNER */
+.group-banner {
+  background: linear-gradient(160deg, #071e0e 0%, #1a5535 100%);
+  border-radius: 14px; padding: 3rem 2rem; text-align: center;
+  position: relative; overflow: hidden; margin-bottom: 2.5rem;
+}
+.group-banner::before {
+  content: attr(data-bp);
+  position: absolute; bottom: -20px; right: -5px;
+  font-family: 'Playfair Display', serif; font-size: 9rem; font-weight: 900;
+  color: rgba(255,255,255,0.05); line-height: 1; pointer-events: none;
+}
+.group-banner h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: white; margin-bottom: 0.25rem; position: relative; z-index: 1; }
+.group-banner p { color: rgba(255,255,255,0.6); font-size: 0.9rem; position: relative; z-index: 1; }
+.group-banner .tahun { background: var(--kuning); color: #3a2800; font-size: 11px; font-weight: 700; padding: 4px 14px; border-radius: 100px; display: inline-block; margin-bottom: 1rem; letter-spacing: 0.06em; position: relative; z-index: 1; }
+
+/* ANGGOTA CARDS */
+.anggota-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(165px, 1fr)); gap: 1.25rem; }
+.anggota-card {
+  background: var(--putih); border-radius: 14px; border: 1px solid var(--border);
+  overflow: hidden; transition: all 0.25s; cursor: default;
+}
+.anggota-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(26,122,74,0.12); border-color: var(--hijau-terang); }
+.anggota-foto-wrap {
+  background: linear-gradient(135deg, var(--hijau-gelap), var(--hijau-terang));
+  height: 120px; display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.anggota-foto-wrap::before {
+  content: attr(data-init);
+  font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 700;
+  color: rgba(255,255,255,0.9);
+}
+.anggota-card .merah .anggota-foto-wrap { background: linear-gradient(135deg, #6b1010, var(--merah)); }
+.anggota-info { padding: 1rem; text-align: center; }
+.anggota-card .jabatan { font-size: 10px; font-weight: 700; color: var(--hijau); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 4px; }
+.anggota-card .nama { font-size: 0.875rem; font-weight: 700; color: var(--teks); }
+.anggota-card .kelas { font-size: 11px; color: var(--teks-abu); margin-top: 3px; }
+
+/* KETUA FEATURED */
+.ketua-featured {
+  background: var(--putih); border-radius: 14px; border: 2px solid var(--kuning);
+  display: flex; gap: 2rem; align-items: center; padding: 2rem; margin-bottom: 1.5rem;
+}
+.ketua-avatar {
+  width: 100px; height: 100px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--hijau-gelap), var(--hijau-terang));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: white;
+  border: 3px solid var(--kuning);
+}
+.ketua-featured h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--teks); margin-bottom: 4px; }
+.ketua-featured .jabatan { font-size: 12px; font-weight: 700; color: var(--kuning); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.75rem; }
+.ketua-featured p { font-size: 0.875rem; color: var(--teks-abu); line-height: 1.65; }
+
+@media(max-width:768px){
+  .bp-tab { padding: 12px 16px; font-size: 13px; }
+  .ketua-featured { flex-direction: column; gap: 1rem; text-align: center; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">M</div>
+    <div class="nav-title">MPK SMK SMTI<span>Padang</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Beranda</a>
+    <a href="tentang.html">Tentang</a>
+    <a href="struktur.html">Struktur</a>
+    <a href="pemiltos.html">Pemiltos</a>
+    <a href="profil.html">Profil</a>
+    <a href="keseruan.html">Keseruan</a>
+    <a href="form-osis.html">Form OSIS</a>
+  </div>
+  <div class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+</nav>
+<div class="nav-overlay" onclick="toggleNav()"></div>
+<div class="nav-drawer">
+  <a href="index.html">🏠 Beranda</a>
+  <a href="tentang.html">📋 Tentang MPK</a>
+  <a href="struktur.html">🏛️ Struktur Organisasi</a>
+  <div class="drawer-section">Pemilihan</div>
+  <a href="pemiltos.html">🗳️ Pemiltos 2026/2027</a>
+  <div class="drawer-section">Profil</div>
+  <a href="profil.html?bp=bp20">BP 20</a>
+  <a href="profil.html?bp=bp21">BP 21</a>
+  <a href="profil.html?bp=bp22">BP 22</a>
+  <a href="profil.html?bp=bp23">BP 23</a>
+  <div class="drawer-section">Lainnya</div>
+  <a href="keseruan.html">🎉 Keseruan MPK</a>
+  <a href="form-osis.html">📝 Form OSIS</a>
+</div>
+
+<div class="page-wrap">
+  <div class="page-hero" data-title="PROFIL">
+    <div class="container">
+      <span class="section-tag">Profil Anggota</span>
+      <h1>Anggota <em>MPK</em><br>Per Angkatan</h1>
+      <p>Mengenal lebih dekat anggota MPK SMK SMTI Padang dari berbagai angkatan.</p>
+    </div>
+  </div>
+
+  <!-- BP TABS -->
+  <div class="bp-nav">
+    <div class="bp-nav-inner">
+      <a class="bp-tab" data-bp="bp20" onclick="gantiTab('bp20',event)">Anggota BP 20</a>
+      <a class="bp-tab" data-bp="bp21" onclick="gantiTab('bp21',event)">Anggota BP 21</a>
+      <a class="bp-tab" data-bp="bp22" onclick="gantiTab('bp22',event)">Anggota BP 22</a>
+      <a class="bp-tab" data-bp="bp23" onclick="gantiTab('bp23',event)">Anggota BP 23</a>
+    </div>
+  </div>
+
+  <section class="content-section">
+    <div class="container">
+
+      <!-- BP 20 -->
+      <div class="bp-panel" id="bp20">
+        <div class="group-banner" data-bp="BP20">
+          <div class="tahun">Angkatan 2020</div>
+          <h2>Anggota MPK BP 20</h2>
+          <p>Generasi pertama yang membuka jejak kepemimpinan MPK SMK SMTI Padang</p>
+        </div>
+        <div class="ketua-featured">
+          <div class="ketua-avatar">A</div>
+          <div>
+            <div class="jabatan">⭐ Ketua MPK BP 20</div>
+            <h3>Nama Ketua BP 20</h3>
+            <p>Memimpin MPK periode angkatan 2020 dengan semangat dan dedikasi tinggi dalam mengawal kinerja OSIS SMK SMTI Padang.</p>
+          </div>
+        </div>
+        <div class="anggota-grid">
+          <div class="anggota-card"><div class="anggota-foto-wrap" data-init="S"></div><div class="anggota-info"><div class="jabatan">Anggota</div><div class="nama">Septyalius</div><div class="kelas">BP 20</div></div></div>
+          <div class="anggota-card"><div class="anggota-foto-wrap" data-init="K"></div><div class="anggota-info"><div class="jabatan">Anggota</div><div class="nama">Anggota BP20</div><div class="kelas">BP 20</div></div></div>
+          <div class="anggota-card"><div class="anggota-foto-wrap" data-init="R"></div><div class="anggota-info"><div class="jabatan">Anggota</div><div class="nama">Anggota BP20</div><div class="kelas">BP 20</div></div></div>
+          <div class="anggota-card"><div class="anggota-foto-wrap" data-init="F"></div><div class="anggota-info"><div class="jabatan">Anggota</div><div class="nama">Anggota BP20</div><div class="kelas">BP 20</div></div></div>
+          <div class="anggota-card"><div class="anggota-foto-wrap" data-init="N"></div><div class="anggota-info"><div class="jabatan">Anggota</div><div class="nama">Anggota BP20</div><div class="kelas">BP 20</div></div></div>
+          <div class="anggota-card"><div class="anggota-foto-wrap" data-init="M"></div><div class="anggota-info"><div class="jabatan">Anggota</div><div class="nama">Anggota BP20</div><div class="kelas">BP 20</div></div></div>
+        </div>
+      </div>
+
+      <!-- BP 21 -->
+      <div class="bp-panel" id="bp21">
+        <div class="group-banner" data-bp="BP21">
+          <div class="tahun">Angkatan 2021</div>
+          <h2>Anggota MPK BP 21</h2>
+          <p>Generasi penerus yang memperkuat fondasi organisasi MPK SMK SMTI Padang</p>
+        </div>
+        <div class="ketua-featured">
+          <div class="ketua-avatar">A</div>
+          <div>
+            <div class="jabatan">⭐ Ketua MPK BP 21</div>
+            <h3>Adam Rulian</h3>
+            <p>Memimpin MPK periode angkatan 2021 dengan fokus pada penguatan sistem pengawasan OSIS dan peningkatan kualitas organisasi.</p>
+          </div>
+        </div>
+        <div class="anggota-grid">
+          <div class="anggota-card"><div class="anggota-foto-wrap" data-init="B"></div><div class="anggota-info"><div class="jabatan">Wakil Ketua</div><div class="nama">Anggota BP21</div><div class="kelas">BP 21</div></div></div>
+          <div class="anggota-card"><div class="anggota-foto-wrap" data-init="C"></div><div class="anggota-info"><div class="jabatan">Sekretaris</div><div class="nama">Anggota BP21</div><div class="kelas">BP 21</div></div></div>
+          <div class="anggota-card"><div class="anggota-foto-wrap" data-init="D"></div><div class="anggota-info"><div class="jabatan">Anggota</div><div class="nama">Anggota BP21</div><div class="kelas">BP 21</div></div></div>
+          <div class="anggota-card"><div class="anggota-foto-wrap" data-init="E"></div><div class="anggota-info"><div class="jabatan">Anggota</div><div class="nama">Anggota BP21</div><div class="kelas">BP 21</div></div></div>
+          <div class="anggota-card"><div class="anggota-foto-wrap" data-init="F"></div><div class="anggota-info"><div class="jabatan">Anggota</div><div class="nama">Anggota BP21</div><div class="kelas">BP 21</div></div></div>
+        </div>
+      </div>
+
+      <!-- BP 22 -->
+      <div class="bp-panel" id="bp22">
+        <div class="group-banner" data-bp="BP22">
+          <div class="tahun">Angkatan 2022</div>
+          <h2>Anggota MPK BP 22</h2>
+          <p>Generasi yang terus berinovasi dalam meningkatkan kinerja organisasi siswa</p>
+        </div>
+        <div class="ketua-featured">
+          <div class="ketua-avatar">H</div>
+          <div>
+            <div class="jabatan">⭐ Ketua MPK BP 22</div>
+            <h3>Ketua BP 22</h3>
+            <p>Memimpin MPK periode angkatan 2022 dengan inovasi dan semangat baru dalam membangun organisasi yang lebih transparan dan akuntabel.</p>
+          </div>
+        </div>
+        <div class="anggota-grid">
+          <div class="anggota-card"><div class="anggota-foto-wrap" data-init="M"></div><div class="anggota-info"><div class="jabatan">Wakil Ketua</div><div class="nama">Anggota BP22</div><div class="kelas">BP 22</div></div></div>
+          <div class="anggota-card"><div class="anggota-foto-wrap" data-init="F"></div><div class="anggota-info"><div class="jabatan">Sekretaris</div><div class="nama">Anggota BP22</div><div class="kelas">BP 22</div></div></div>
+          <div class="anggota-card"><div class="anggota-foto-wrap" data-init="R"></div><div class="anggota-info"><div class="jabatan">Koordinator</div><div class="nama">Anggota BP22</div><div class="kelas">BP 22</div></div></div>
+          <div class="anggota-card"><div class="anggota-foto-wrap" data-init="G"></div><div class="anggota-info"><div class="jabatan">Koordinator</div><div class="nama">Anggota BP22</div><div class="kelas">BP 22</div></div></div>
+          <div class="anggota-card"><div class="anggota-foto-wrap" data-init="T"></div><div class="anggota-info"><div class="jabatan">Anggota</div><div class="nama">Anggota BP22</div><div class="kelas">BP 22</div></div></div>
+          <div class="anggota-card"><div class="anggota-foto-wrap" data-init="Y"></div><div class="anggota-info"><div class="jabatan">Anggota</div><div class="nama">Anggota BP22</div><div class="kelas">BP 22</div></div></div>
+          <div class="anggota-card"><div class="anggota-foto-wrap" data-init="U"></div><div class="anggota-info"><div class="jabatan">Anggota</div><div class="nama">Anggota BP22</div><div class="kelas">BP 22</div></div></div>
+        </div>
+      </div>
+
+      <!-- BP 23 -->
+      <div class="bp-panel" id="bp23">
+        <div class="group-banner" data-bp="BP23">
+          <div class="tahun">Angkatan 2023</div>
+          <h2>Anggota MPK BP 23</h2>
+          <p>Generasi terkini yang membawa semangat baru dalam kepemimpinan MPK SMK SMTI Padang</p>
+        </div>
+        <div class="ketua-featured">
+          <div class="ketua-avatar">A</div>
+          <div>
+            <div class="jabatan">⭐ Ketua MPK BP 23</div>
+            <h3>Ahlan Napira</h3>
+            <p>Memimpin MPK periode 2024/2025 dengan visi membangun organisasi yang lebih kuat, transparan, dan berdampak nyata bagi seluruh siswa SMK SMTI Padang.</p>
+          </div>
+        </div>
+        <div class="anggota-grid">
+          <div class="anggota-card"><div class="anggota-foto-wrap" data-init="D"></div><div class="anggota-info"><div class="jabatan">Wakil Ketua</div><div class="nama">Dohriansyah</div><div class="kelas">BP 23</div></div></div>
+          <div class="anggota-card"><div class="anggota-foto-wrap" data-init="S"></div><div class="anggota-info"><div class="jabatan">Sekretaris</div><div class="nama">Sekretaris</div><div class="kelas">BP 23</div></div></div>
+          <div class="anggota-card"><div class="anggota-foto-wrap" data-init="G"></div><div class="anggota-info"><div class="jabatan">Koord. Kampanye</div><div class="nama">Garusa Putri</div><div class="kelas">BP 23</div></div></div>
+          <div class="anggota-card"><div class="anggota-foto-wrap" data-init="P"></div><div class="anggota-info"><div class="jabatan">Koord. Perekrut</div><div class="nama">Pavela Rian P.</div><div class="kelas">BP 23</div></div></div>
+          <div class="anggota-card"><div class="anggota-foto-wrap" data-init="L"></div><div class="anggota-info"><div class="jabatan">Koord. Pengawas</div><div class="nama">Lathfa Bandti</div><div class="kelas">BP 23</div></div></div>
+          <div class="anggota-card"><div class="anggota-foto-wrap" data-init="Z"></div><div class="anggota-info"><div class="jabatan">Anggota</div><div class="nama">Zhyvano</div><div class="kelas">BP 23</div></div></div>
+          <div class="anggota-card"><div class="anggota-foto-wrap" data-init="N"></div><div class="anggota-info"><div class="jabatan">Anggota</div><div class="nama">Anggota BP23</div><div class="kelas">BP 23</div></div></div>
+          <div class="anggota-card"><div class="anggota-foto-wrap" data-init="R"></div><div class="anggota-info"><div class="jabatan">Anggota</div><div class="nama">Anggota BP23</div><div class="kelas">BP 23</div></div></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3>MPK SMK SMTI Padang</h3>
+      <p>Majelis Permusyawaratan Kelas<br>SMK SMTI Padang<br>Jl. Ir. H. Juanda No.2, Padang<br>Telp. (0751) 705322 · Fax. 075141924</p>
+    </div>
+    <div class="footer-col">
+      <h4>Halaman</h4>
+      <a href="tentang.html">Tentang MPK</a>
+      <a href="struktur.html">Struktur</a>
+      <a href="pemiltos.html">Pemiltos</a>
+      <a href="profil.html">Profil Anggota</a>
+    </div>
+    <div class="footer-col">
+      <h4>Lainnya</h4>
+      <a href="keseruan.html">Keseruan MPK</a>
+      <a href="form-osis.html">Form OSIS</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 MPK SMK SMTI Padang. Seluruh hak dilindungi.</span>
+    <span>Periode 2024/2025</span>
+  </div>
+</footer>
+<script src="nav.js"></script>
+<script>
+function gantiTab(bp, e) {
+  if(e) e.preventDefault();
+  document.querySelectorAll('.bp-panel').forEach(p => p.classList.remove('aktif'));
+  document.querySelectorAll('.bp-tab').forEach(t => t.classList.remove('aktif'));
+  document.getElementById(bp).classList.add('aktif');
+  document.querySelector('[data-bp="'+bp+'"]').classList.add('aktif');
+}
+// Read URL param
+const urlBp = new URLSearchParams(window.location.search).get('bp') || 'bp23';
+gantiTab(urlBp);
+</script>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Struktur MPK — SMK SMTI Padang</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.content-section { padding: 64px 1.5rem; }
+.content-section.alt { background: var(--putih); }
+
+.periode-badge {
+  display: inline-block; background: var(--kuning); color: #3a2800;
+  font-size: 12px; font-weight: 700; padding: 5px 16px; border-radius: 100px;
+  letter-spacing: 0.06em; margin-bottom: 2rem;
+}
+
+/* INTI PENGURUS */
+.inti-grid { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 3rem; }
+.inti-card {
+  background: var(--putih); border-radius: 14px; border: 1px solid var(--border);
+  padding: 1.75rem 1.5rem; text-align: center; width: 200px; transition: all 0.25s;
+  position: relative;
+}
+.inti-card.ketua { border-color: var(--kuning); box-shadow: 0 0 0 2px rgba(200,168,0,0.2); }
+.inti-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(26,122,74,0.12); }
+.jabatan-badge {
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  background: var(--hijau); color: white; font-size: 10px; font-weight: 700;
+  padding: 3px 14px; border-radius: 100px; white-space: nowrap; letter-spacing: 0.05em;
+}
+.inti-card.ketua .jabatan-badge { background: var(--kuning); color: #3a2800; }
+.inti-avatar {
+  width: 72px; height: 72px; border-radius: 50%; margin: 0.5rem auto 1rem;
+  background: linear-gradient(135deg, #c5ecd8, var(--hijau-muda));
+  border: 3px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: var(--hijau);
+}
+.inti-card.ketua .inti-avatar { background: linear-gradient(135deg, #fff3b0, #fde87a); color: #7a5c00; border-color: var(--kuning); }
+.inti-card .nama { font-size: 0.95rem; font-weight: 700; color: var(--teks); }
+.inti-card .kelas { font-size: 12px; color: var(--teks-abu); margin-top: 3px; }
+
+/* SEKSI CARDS */
+.seksi-block { margin-bottom: 2.5rem; }
+.seksi-header {
+  background: linear-gradient(135deg, var(--hijau-terang), #27a560);
+  border-radius: 10px; padding: 12px 20px; margin-bottom: 1.25rem;
+}
+.seksi-header h3 { color: white; font-size: 1rem; font-weight: 700; }
+.seksi-header p { color: rgba(255,255,255,0.75); font-size: 12px; margin-top: 2px; }
+.seksi-anggota { display: grid; grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); gap: 1rem; }
+.anggota-card {
+  background: var(--putih); border-radius: 11px; border: 1px solid var(--border);
+  padding: 1.25rem; text-align: center; transition: all 0.2s;
+}
+.anggota-card:hover { border-color: var(--hijau-terang); transform: translateY(-2px); }
+.anggota-avatar {
+  width: 54px; height: 54px; border-radius: 50%; margin: 0 auto 0.75rem;
+  background: linear-gradient(135deg, #d4eee0, var(--hijau-muda));
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 18px; color: var(--hijau);
+  font-family: 'Playfair Display', serif;
+}
+.anggota-card .peran { font-size: 11px; font-weight: 700; color: var(--hijau); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+.anggota-card .nama { font-size: 13px; font-weight: 600; color: var(--teks); }
+.anggota-card .kelas { font-size: 11px; color: var(--teks-abu); margin-top: 2px; }
+
+/* BAGAN VISUAL */
+.bagan { display: flex; flex-direction: column; align-items: center; gap: 0; margin-top: 2rem; }
+.bagan-row { display: flex; gap: 1rem; justify-content: center; }
+.bagan-node {
+  background: var(--putih); border: 1px solid var(--border); border-radius: 10px;
+  padding: 10px 18px; font-size: 13px; font-weight: 600; color: var(--teks); text-align: center;
+  min-width: 120px;
+}
+.bagan-node.top { background: var(--hijau); color: white; border-color: var(--hijau); }
+.bagan-node.mid { background: var(--hijau-muda); color: var(--hijau); border-color: var(--hijau-terang); }
+.bagan-line { width: 2px; height: 28px; background: var(--border); margin: 0 auto; }
+.bagan-hline { display: flex; align-items: center; gap: 0; width: 100%; justify-content: center; margin: 0; }
+.bagan-hline::before, .bagan-hline::after { content: ''; flex: 1; max-width: 100px; height: 2px; background: var(--border); }
+
+@media(max-width:768px){
+  .inti-grid { justify-content: center; }
+  .inti-card { width: 160px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">M</div>
+    <div class="nav-title">MPK SMK SMTI<span>Padang</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Beranda</a>
+    <a href="tentang.html">Tentang</a>
+    <a href="struktur.html">Struktur</a>
+    <a href="pemiltos.html">Pemiltos</a>
+    <a href="profil.html">Profil</a>
+    <a href="keseruan.html">Keseruan</a>
+    <a href="form-osis.html">Form OSIS</a>
+  </div>
+  <div class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+</nav>
+<div class="nav-overlay" onclick="toggleNav()"></div>
+<div class="nav-drawer">
+  <a href="index.html">🏠 Beranda</a>
+  <a href="tentang.html">📋 Tentang MPK</a>
+  <a href="struktur.html">🏛️ Struktur Organisasi</a>
+  <div class="drawer-section">Pemilihan</div>
+  <a href="pemiltos.html">🗳️ Pemiltos 2026/2027</a>
+  <div class="drawer-section">Profil</div>
+  <a href="profil.html?bp=bp20">BP 20</a>
+  <a href="profil.html?bp=bp21">BP 21</a>
+  <a href="profil.html?bp=bp22">BP 22</a>
+  <a href="profil.html?bp=bp23">BP 23</a>
+  <div class="drawer-section">Lainnya</div>
+  <a href="keseruan.html">🎉 Keseruan MPK</a>
+  <a href="form-osis.html">📝 Form OSIS</a>
+</div>
+
+<div class="page-wrap">
+  <div class="page-hero" data-title="STRUKTUR">
+    <div class="container">
+      <span class="section-tag">Struktur Organisasi</span>
+      <h1>Struktur MPK<br><em>SMTI Padang</em></h1>
+      <p>Susunan pengurus Majelis Permusyawaratan Kelas SMK SMTI Padang periode 2024/2025.</p>
+    </div>
+  </div>
+
+  <!-- BAGAN -->
+  <section class="content-section alt">
+    <div class="container">
+      <span class="section-tag">Bagan Organisasi</span>
+      <h2 class="section-judul">Bagan Struktur</h2>
+      <div style="margin-top:2.5rem;">
+        <div class="bagan">
+          <div class="bagan-row"><div class="bagan-node top">Ketua MPK</div></div>
+          <div class="bagan-line"></div>
+          <div class="bagan-row"><div class="bagan-node mid">Wakil Ketua</div></div>
+          <div class="bagan-line"></div>
+          <div class="bagan-row"><div class="bagan-node mid">Sekretaris</div></div>
+          <div class="bagan-line"></div>
+          <div class="bagan-hline">
+            <div style="width:2px;height:28px;background:var(--border);position:absolute;"></div>
+          </div>
+          <div class="bagan-row" style="gap:3rem;">
+            <div class="bagan-node">Seksi Kampanye</div>
+            <div class="bagan-node">Seksi Perekrut</div>
+            <div class="bagan-node">Seksi Pengawas</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PENGURUS INTI -->
+  <section class="content-section">
+    <div class="container">
+      <div class="periode-badge">Periode 2025/2026 · BP 23</div>
+      <span class="section-tag">Pengurus Inti</span>
+      <h2 class="section-judul">Susunan Pengurus Inti</h2>
+      <div class="inti-grid" style="margin-top:2rem;">
+        <div class="inti-card ketua">
+          <div class="jabatan-badge">Ketua MPK</div>
+          <div class="inti-avatar">A</div>
+          <div class="nama">Ahlan Napira</div>
+          <div class="kelas">BP 23</div>
+        </div>
+        <div class="inti-card">
+          <div class="jabatan-badge">Wakil Ketua</div>
+          <div class="inti-avatar">D</div>
+          <div class="nama">Dohriansyah</div>
+          <div class="kelas">BP 23</div>
+        </div>
+        <div class="inti-card">
+          <div class="jabatan-badge">Sekretaris</div>
+          <div class="inti-avatar">S</div>
+          <div class="nama">Sekretaris</div>
+          <div class="kelas">BP 23</div>
+        </div>
+      </div>
+
+      <!-- SEKSI KAMPANYE -->
+      <div class="seksi-block">
+        <div class="seksi-header">
+          <h3>Seksi Kampanye</h3>
+          <p>Bertanggung jawab atas kampanye dan sosialisasi pemilihan OSIS</p>
+        </div>
+        <div class="seksi-anggota">
+          <div class="anggota-card">
+            <div class="anggota-avatar">G</div>
+            <div class="peran">Koordinator</div>
+            <div class="nama">Garusa Putri</div>
+            <div class="kelas">BP 23</div>
+          </div>
+          <div class="anggota-card">
+            <div class="anggota-avatar">A</div>
+            <div class="peran">Anggota</div>
+            <div class="nama">Anggota 1</div>
+            <div class="kelas">BP 23</div>
+          </div>
+          <div class="anggota-card">
+            <div class="anggota-avatar">B</div>
+            <div class="peran">Anggota</div>
+            <div class="nama">Anggota 2</div>
+            <div class="kelas">BP 23</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEKSI PEREKRUT -->
+      <div class="seksi-block">
+        <div class="seksi-header">
+          <h3>Seksi Perekrut</h3>
+          <p>Bertanggung jawab atas seleksi dan rekrutmen anggota OSIS & MPK</p>
+        </div>
+        <div class="seksi-anggota">
+          <div class="anggota-card">
+            <div class="anggota-avatar">P</div>
+            <div class="peran">Koordinator</div>
+            <div class="nama">Pavela Rian P.</div>
+            <div class="kelas">BP 23</div>
+          </div>
+          <div class="anggota-card">
+            <div class="anggota-avatar">Z</div>
+            <div class="peran">Anggota</div>
+            <div class="nama">Zhyvano</div>
+            <div class="kelas">BP 23</div>
+          </div>
+          <div class="anggota-card">
+            <div class="anggota-avatar">C</div>
+            <div class="peran">Anggota</div>
+            <div class="nama">Anggota 3</div>
+            <div class="kelas">BP 23</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEKSI PENGAWAS -->
+      <div class="seksi-block">
+        <div class="seksi-header">
+          <h3>Seksi Pengawas</h3>
+          <p>Bertanggung jawab atas pengawasan kinerja OSIS dan laporan pertanggungjawaban</p>
+        </div>
+        <div class="seksi-anggota">
+          <div class="anggota-card">
+            <div class="anggota-avatar">L</div>
+            <div class="peran">Koordinator</div>
+            <div class="nama">Lathfa Bandti</div>
+            <div class="kelas">BP 23</div>
+          </div>
+          <div class="anggota-card">
+            <div class="anggota-avatar">F</div>
+            <div class="peran">Anggota</div>
+            <div class="nama">Anggota 4</div>
+            <div class="kelas">BP 23</div>
+          </div>
+          <div class="anggota-card">
+            <div class="anggota-avatar">R</div>
+            <div class="peran">Anggota</div>
+            <div class="nama">Anggota 5</div>
+            <div class="kelas">BP 23</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3>MPK SMK SMTI Padang</h3>
+      <p>Majelis Permusyawaratan Kelas<br>SMK SMTI Padang<br>Jl. Ir. H. Juanda No.2, Padang<br>Telp. (0751) 705322 · Fax. 075141924</p>
+    </div>
+    <div class="footer-col">
+      <h4>Halaman</h4>
+      <a href="tentang.html">Tentang MPK</a>
+      <a href="struktur.html">Struktur</a>
+      <a href="pemiltos.html">Pemiltos</a>
+      <a href="profil.html">Profil Anggota</a>
+    </div>
+    <div class="footer-col">
+      <h4>Lainnya</h4>
+      <a href="keseruan.html">Keseruan MPK</a>
+      <a href="form-osis.html">Form OSIS</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 MPK SMK SMTI Padang. Seluruh hak dilindungi.</span>
+    <span>Periode 2024/2025</span>
+  </div>
+</footer>
+<script src="nav.js"></script>
+</body>
+</html>
