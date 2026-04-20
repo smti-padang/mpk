@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tentang MPK — SMK SMTI Padang</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.content-section { padding: 64px 1.5rem; }
+.content-section.alt { background: var(--putih); }
+
+/* TUGAS GRID */
+.tugas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2.5rem; }
+.tugas-card {
+  background: var(--putih); border-radius: 12px;
+  border: 1px solid var(--border); padding: 1.25rem 1.5rem;
+  display: flex; gap: 1rem; align-items: flex-start; transition: all 0.2s;
+}
+.tugas-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(26,122,74,0.1); }
+.tugas-num {
+  min-width: 34px; height: 34px; border-radius: 50%;
+  background: var(--hijau-muda); color: var(--hijau);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 13px; flex-shrink: 0; margin-top: 2px;
+}
+.tugas-card p { font-size: 0.875rem; line-height: 1.65; color: var(--teks-abu); }
+
+/* PROGRAM KERJA */
+.prog-item {
+  border-radius: 12px; border-left: 4px solid var(--hijau-terang);
+  background: var(--bg); padding: 1.5rem 1.75rem; margin-bottom: 1.25rem;
+}
+.prog-item h3 { font-size: 1rem; font-weight: 700; color: var(--hijau); margin-bottom: 0.75rem; }
+.prog-sublist { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+.prog-sublist li {
+  font-size: 0.875rem; color: var(--teks-abu); padding-left: 1.25rem;
+  position: relative; line-height: 1.6;
+}
+.prog-sublist li::before {
+  content: ''; position: absolute; left: 0; top: 8px;
+  width: 5px; height: 5px; border-radius: 50%; background: var(--hijau-terang);
+}
+
+/* VISI MISI */
+.visi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
+.visi-card {
+  border-radius: 14px; padding: 2rem; position: relative; overflow: hidden;
+}
+.visi-card.visi { background: linear-gradient(135deg, var(--hijau-gelap), var(--hijau)); }
+.visi-card.misi { background: linear-gradient(135deg, #6b1010, var(--merah)); }
+.visi-card::before {
+  content: attr(data-word);
+  position: absolute; bottom: -10px; right: -5px;
+  font-family: 'Playfair Display', serif; font-size: 5rem; font-weight: 900;
+  color: rgba(255,255,255,0.06); pointer-events: none; line-height: 1;
+}
+.visi-card h3 { font-family: 'Playfair Display', serif; color: white; font-size: 1.25rem; margin-bottom: 0.75rem; }
+.visi-card p, .visi-card li { color: rgba(255,255,255,0.75); font-size: 0.9rem; line-height: 1.7; }
+.visi-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; padding-left: 0; }
+.visi-card ul li { padding-left: 1.1rem; position: relative; }
+.visi-card ul li::before { content: '–'; position: absolute; left: 0; color: rgba(255,255,255,0.5); }
+
+@media(max-width:768px){
+  .tugas-grid { grid-template-columns: 1fr; }
+  .visi-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">M</div>
+    <div class="nav-title">MPK SMK SMTI<span>Padang</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Beranda</a>
+    <a href="tentang.html">Tentang</a>
+    <a href="struktur.html">Struktur</a>
+    <a href="pemiltos.html">Pemiltos</a>
+    <a href="profil.html">Profil</a>
+    <a href="keseruan.html">Keseruan</a>
+    <a href="form-osis.html">Form OSIS</a>
+  </div>
+  <div class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+</nav>
+<div class="nav-overlay" onclick="toggleNav()"></div>
+<div class="nav-drawer">
+  <a href="index.html">🏠 Beranda</a>
+  <a href="tentang.html">📋 Tentang MPK</a>
+  <a href="struktur.html">🏛️ Struktur Organisasi</a>
+  <div class="drawer-section">Pemilihan</div>
+  <a href="pemiltos.html">🗳️ Pemiltos 2026/2027</a>
+  <div class="drawer-section">Profil</div>
+  <a href="profil.html?bp=bp20">BP 20</a>
+  <a href="profil.html?bp=bp21">BP 21</a>
+  <a href="profil.html?bp=bp22">BP 22</a>
+  <a href="profil.html?bp=bp23">BP 23</a>
+  <div class="drawer-section">Lainnya</div>
+  <a href="keseruan.html">🎉 Keseruan MPK</a>
+  <a href="form-osis.html">📝 Form OSIS</a>
+</div>
+
+<div class="page-wrap">
+  <!-- PAGE HERO -->
+  <div class="page-hero" data-title="TENTANG">
+    <div class="container">
+      <span class="section-tag">Tentang Kami</span>
+      <h1>MPK <em>SMK SMTI</em> Padang</h1>
+      <p>Mengenal lebih dalam organisasi tertinggi siswa di SMK SMTI Padang — tugas, program kerja, dan visi misinya.</p>
+    </div>
+  </div>
+
+  <!-- DESKRIPSI -->
+  <section class="content-section alt">
+    <div class="container">
+      <span class="section-tag">Profil Organisasi</span>
+      <h2 class="section-judul">Apa itu MPK SMK SMTI Padang?</h2>
+      <p class="section-sub">MPK SMK SMTI Padang merupakan organisasi tertinggi di SMK SMTI Padang yang menjadi penyalur antara siswa dengan sekolah dan bertugas memilih Ketua dan Wakil Ketua OSIS serta mengawasi kinerja OSIS.</p>
+      <p style="margin-top:1rem;font-size:1rem;color:var(--teks-abu);line-height:1.85;">Sebagai badan legislatif di tingkat sekolah, MPK memastikan seluruh kegiatan organisasi siswa berjalan sesuai dengan aturan dan nilai-nilai yang berlaku. MPK juga berperan aktif dalam menjembatani komunikasi antara siswa, OSIS, dan pihak sekolah demi terciptanya lingkungan belajar yang kondusif dan organisasi yang akuntabel.</p>
+    </div>
+  </section>
+
+  <!-- VISI MISI -->
+  <section class="content-section">
+    <div class="container">
+      <span class="section-tag">Visi & Misi</span>
+      <h2 class="section-judul">Visi & Misi MPK</h2>
+      <div class="visi-grid">
+        <div class="visi-card visi" data-word="VISI">
+          <h3>Visi</h3>
+          <p>Mewujudkan MPK SMK SMTI Padang yang aktif, transparan, dan bertanggung jawab dalam mengawasi serta mendukung kinerja OSIS demi kemajuan sekolah.</p>
+        </div>
+        <div class="visi-card misi" data-word="MISI">
+          <h3>Misi</h3>
+          <ul>
+            <li>Mengawasi dan mengevaluasi seluruh program kerja OSIS secara objektif</li>
+            <li>Menjadi jembatan komunikasi antara siswa dan sekolah</li>
+            <li>Menyelenggarakan pemilihan ketua OSIS yang demokratis dan transparan</li>
+            <li>Meningkatkan kualitas organisasi siswa dari masa ke masa</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TUGAS MPK -->
+  <section class="content-section alt" id="tugas">
+    <div class="container">
+      <span class="section-tag">Tugas Pokok</span>
+      <h2 class="section-judul">Tugas MPK Secara Keseluruhan</h2>
+      <p class="section-sub">Sembilan tugas utama yang menjadi tanggung jawab Majelis Permusyawaratan Kelas.</p>
+      <div class="tugas-grid">
+        <div class="tugas-card"><div class="tugas-num">1</div><p>Mengawasi, memantau, dan membantu kinerja OSIS dalam melaksanakan program-programnya.</p></div>
+        <div class="tugas-card"><div class="tugas-num">2</div><p>Mengevaluasi kinerja OSIS secara berkala dan menyeluruh.</p></div>
+        <div class="tugas-card"><div class="tugas-num">3</div><p>Mengadakan dan menyiapkan Rapat Pleno bersama seluruh pihak terkait.</p></div>
+        <div class="tugas-card"><div class="tugas-num">4</div><p>Menyiapkan orasi pemilihan Ketua MPK periode berikutnya.</p></div>
+        <div class="tugas-card"><div class="tugas-num">5</div><p>Menyiapkan orasi pemilihan Ketua OSIS periode berikutnya.</p></div>
+        <div class="tugas-card"><div class="tugas-num">6</div><p>Menyeleksi calon anggota OSIS dan MPK untuk masa jabatan berikutnya.</p></div>
+        <div class="tugas-card"><div class="tugas-num">7</div><p>Mengadakan PKO-PKM untuk calon ketua OSIS dan MPK.</p></div>
+        <div class="tugas-card"><div class="tugas-num">8</div><p>Memilih calon ketua OSIS dan MPK yang akan melaksanakan orasi.</p></div>
+        <div class="tugas-card" style="grid-column:1/-1;">
+          <div class="tugas-num">9</div>
+          <p>Tugas tambahan lainnya baik yang terprogram maupun yang insidental — contoh: membersihkan lingkungan sekolah atas inisiatif MPK sendiri.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAM KERJA -->
+  <section class="content-section" id="program">
+    <div class="container">
+      <span class="section-tag">Program Kerja</span>
+      <h2 class="section-judul">Program Kerja MPK</h2>
+      <p class="section-sub">Rencana kerja MPK yang dibagi menjadi program umum dan program khusus.</p>
+      <div style="margin-top:2rem;">
+        <div class="prog-item">
+          <h3>1. Program MPK Secara Umum</h3>
+          <ul class="prog-sublist">
+            <li>Majelis Permusyawaratan Kelas (MPK) memiliki tugas yakni mengawasi setiap program kerja OSIS dan menindak lanjuti apabila terjadi kekeliruan dengan cara mengevaluasi hasil kegiatan.</li>
+            <li>Diluruskan bersama, diperbaiki, dan ditingkatkan di masa mendatang.</li>
+          </ul>
+        </div>
+        <div class="prog-item">
+          <h3>2. Program MPK Secara Khusus</h3>
+          <ul class="prog-sublist">
+            <li>Mengumpulkan pihak yang terkait dalam musyawarah khusus untuk meluruskan suatu program kerja OSIS agar terlaksana dengan baik.</li>
+            <li>Mengadakan laporan kegiatan OSIS setiap bulan.</li>
+            <li>Mengadakan laporan pertanggungjawaban OSIS pada pertengahan jabatan.</li>
+            <li>Mengadakan laporan pertanggungjawaban OSIS pada akhir kepengurusan.</li>
+            <li>Memberikan laporan hasil pengawasan MPK kepada OSIS.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3>MPK SMK SMTI Padang</h3>
+      <p>Majelis Permusyawaratan Kelas<br>SMK SMTI Padang<br>Jl. Ir. H. Juanda No.2, Padang<br>Telp. (0751) 705322 · Fax. 075141924</p>
+    </div>
+    <div class="footer-col">
+      <h4>Halaman</h4>
+      <a href="tentang.html">Tentang MPK</a>
+      <a href="struktur.html">Struktur</a>
+      <a href="pemiltos.html">Pemiltos</a>
+      <a href="profil.html">Profil Anggota</a>
+    </div>
+    <div class="footer-col">
+      <h4>Lainnya</h4>
+      <a href="keseruan.html">Keseruan MPK</a>
+      <a href="form-osis.html">Form OSIS</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 MPK SMK SMTI Padang. Seluruh hak dilindungi.</span>
+    <span>Periode 2024/2025</span>
+  </div>
+</footer>
+<script src="nav.js"></script>
+</body>
+</html>
